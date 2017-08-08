@@ -30,7 +30,7 @@ RUN echo "@edge https://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/reposit
     ffmpeg \
     file \
     git \
-    icu-libs \git
+    icu-libs \
     imagemagick@edge \
     libidn \
     libpq \
