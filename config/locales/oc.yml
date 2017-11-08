@@ -316,7 +316,7 @@ oc:
     - dv
     - ds
     abbr_month_names:
-    -
+    - 
     - gen
     - feb
     - mar
@@ -342,7 +342,7 @@ oc:
       long: Lo %e %B de %Y
       short: "%e %b. de %Y"
     month_names:
-    -
+    - 
     - de genièr
     - de febrièr
     - de març
