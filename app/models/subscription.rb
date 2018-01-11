@@ -3,6 +3,7 @@
 #
 # Table name: subscriptions
 #
+#  id                          :integer          not null, primary key
 #  callback_url                :string           default(""), not null
 #  secret                      :string
 #  expires_at                  :datetime

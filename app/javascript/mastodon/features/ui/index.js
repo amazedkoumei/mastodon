@@ -53,7 +53,6 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  me: state.getIn(['meta', 'me']),
   isComposing: state.getIn(['compose', 'is_composing']),
   hasComposingText: state.getIn(['compose', 'text']) !== '',
 });

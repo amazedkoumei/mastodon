@@ -58,12 +58,6 @@ class RemoveStatusService < BaseService
     end
   end
 
-  def remove_from_affected
-    @mentions.map(&:account).select(&:local?).each do |account|
-      Redis.current.publish("timeline:#{account.id}", @payload)
-    end
-  end
-
   def remove_from_remote_affected
     # People who got mentioned in the status, or who
     # reblogged it from someone else might not follow

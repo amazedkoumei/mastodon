@@ -185,25 +185,6 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
     end
   end
 
-  def save_emojis(parent)
-    do_not_download = DomainBlock.find_by(domain: parent.account.domain)&.reject_media?
-
-    return if do_not_download
-
-    @xml.xpath('./xmlns:link[@rel="emoji"]', xmlns: OStatus::TagManager::XMLNS).each do |link|
-      next unless link['href'] && link['name']
-
-      shortcode = link['name'].delete(':')
-      emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: parent.account.domain)
-
-      next unless emoji.nil?
-
-      emoji = CustomEmoji.new(shortcode: shortcode, domain: parent.account.domain)
-      emoji.image_remote_url = link['href']
-      emoji.save
-    end
-  end
-
   def account_from_href(href)
     url = Addressable::URI.parse(href).normalize
 

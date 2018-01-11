@@ -3,6 +3,7 @@
 #
 # Table name: settings
 #
+#  id         :integer          not null, primary key
 #  var        :string           not null
 #  value      :text
 #  thing_type :string

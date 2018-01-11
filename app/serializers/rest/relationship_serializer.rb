@@ -8,10 +8,6 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
-  def id
-    object.id.to_s
-  end
-
   def following
     instance_options[:relationships].following[object.id] ? true : false
   end

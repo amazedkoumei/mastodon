@@ -72,12 +72,6 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def format_spoiler(status)
-    html = encode(status.spoiler_text)
-    html = encode_custom_emojis(html, status.emojis)
-    html.html_safe # rubocop:disable Rails/OutputSafety
-  end
-
   private
 
   def encode(html)

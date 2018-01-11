@@ -34,10 +34,6 @@ module Admin
       thumbnail
     ).freeze
 
-    UPLOAD_SETTINGS = %w(
-      thumbnail
-    ).freeze
-
     def edit
       authorize :settings, :show?
       @admin_settings = Form::AdminSettings.new
