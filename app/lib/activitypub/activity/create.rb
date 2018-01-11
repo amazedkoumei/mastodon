@@ -22,7 +22,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status
     media_attachments = process_attachments
 
-  def process_status
     ApplicationRecord.transaction do
       @status = Status.create!(status_params)
 
@@ -269,10 +268,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def forward_for_reply
     return unless @json['signature'].present? && reply_to_local?
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
-  end
-
-  def lock_options
-    { redis: Redis.current, key: "create:#{@object['id']}" }
   end
 
   def lock_options
