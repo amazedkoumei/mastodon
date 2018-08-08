@@ -8,7 +8,7 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :profile, safe_join([fa_icon('user fw'), t('settings.edit_profile')]), settings_profile_url, highlights_on: %r{/settings/profile|/settings/migration}
       settings.item :preferences, safe_join([fa_icon('sliders fw'), t('settings.preferences')]), settings_preferences_url
       settings.item :notifications, safe_join([fa_icon('bell fw'), t('settings.notifications')]), settings_notifications_url
-      settings.item :password, safe_join([fa_icon('lock fw'), t('auth.change_password')]), edit_user_registration_url, highlights_on: %r{/auth/edit|/settings/delete}
+      settings.item :password, safe_join([fa_icon('lock fw'), t('auth.security')]), edit_user_registration_url, highlights_on: %r{/auth/edit|/settings/delete}
       settings.item :two_factor_authentication, safe_join([fa_icon('mobile fw'), t('settings.two_factor_authentication')]), settings_two_factor_authentication_url, highlights_on: %r{/settings/two_factor_authentication}
       settings.item :import, safe_join([fa_icon('cloud-upload fw'), t('settings.import')]), settings_import_url
       settings.item :export, safe_join([fa_icon('cloud-download fw'), t('settings.export')]), settings_export_url
@@ -16,6 +16,7 @@ SimpleNavigation::Configuration.run do |navigation|
       settings.item :follower_domains, safe_join([fa_icon('users fw'), t('settings.followers')]), settings_follower_domains_url
     end
 
+    primary.item :filters, safe_join([fa_icon('filter fw'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}
     primary.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: proc { Setting.min_invite_role == 'user' }
 
     primary.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_url do |development|
