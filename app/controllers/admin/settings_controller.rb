@@ -13,18 +13,31 @@ module Admin
       closed_registrations_message
       open_deletion
       timeline_preview
+      show_staff_badge
       bootstrap_timeline_accounts
       thumbnail
+      hero
+      min_invite_role
+      activity_api_enabled
+      peers_api_enabled
+      show_known_fediverse_at_about_page
+      preview_sensitive_media
     ).freeze
 
     BOOLEAN_SETTINGS = %w(
       open_registrations
       open_deletion
       timeline_preview
+      show_staff_badge
+      activity_api_enabled
+      peers_api_enabled
+      show_known_fediverse_at_about_page
+      preview_sensitive_media
     ).freeze
 
     UPLOAD_SETTINGS = %w(
       thumbnail
+      hero
     ).freeze
 
     def edit

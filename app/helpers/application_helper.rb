@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  DANGEROUS_SCOPES = %w(
+    read
+    write
+    follow
+  ).freeze
+
   def active_nav_class(path)
     current_page?(path) ? 'active' : ''
   end
 
-  def active_link_to(label, path, options = {})
+  def active_link_to(label, path, **options)
     link_to label, path, options.merge(class: active_nav_class(path))
   end
 
@@ -22,8 +28,16 @@ module ApplicationHelper
   end
 
   def add_rtl_body_class(other_classes)
-    other_classes = "#{other_classes} rtl" if [:ar, :fa, :he].include?(I18n.locale)
+    other_classes = "#{other_classes} rtl" if locale_direction == 'rtl'
     other_classes
+  end
+
+  def locale_direction
+    if [:ar, :fa, :he].include?(I18n.locale)
+      'rtl'
+    else
+      'ltr'
+    end
   end
 
   def favicon_path
@@ -33,6 +47,10 @@ module ApplicationHelper
 
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
+  end
+
+  def class_for_scope(scope)
+    'scope-danger' if DANGEROUS_SCOPES.include?(scope.to_s)
   end
 
   def can?(action, record)
@@ -54,5 +72,9 @@ module ApplicationHelper
 
   def opengraph(property, content)
     tag(:meta, content: content, property: property)
+  end
+
+  def react_component(name, props = {})
+    content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
   end
 end

@@ -9,11 +9,11 @@ module Mastodon
     end
 
     def minor
-      0
+      4
     end
 
     def patch
-      0
+      3
     end
 
     def pre
@@ -33,12 +33,12 @@ module Mastodon
     end
 
     def source_base_url
-      'https://github.com/tootsuite/mastodon'
+      'https://github.com/amazedkoumei/mastodon'
     end
 
     # specify git tag or commit hash here
     def source_tag
-      nil
+      'mine'
     end
 
     def source_url
@@ -47,6 +47,10 @@ module Mastodon
       else
         source_base_url
       end
+    end
+
+    def user_agent
+      @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Version}; +http#{Rails.configuration.x.use_https ? 's' : ''}://#{Rails.configuration.x.web_domain}/)"
     end
   end
 end
